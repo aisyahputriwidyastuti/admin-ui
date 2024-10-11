@@ -8,7 +8,7 @@ function App() {
         ini poppins 
       </h1>
       <h1 className="text-3xl"> ini font body lagi</h1>
-      <h1><p> halo,ini aisyah</p></h1>
+      <h1><p> ini aisyah</p></h1>
 	  </>
   )
 }
