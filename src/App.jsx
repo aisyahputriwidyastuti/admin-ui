@@ -28,7 +28,7 @@ const App = () => {
     },
     {
       path: "/balance",
-      element: <BalancePage />,
+      element: <BalancePage/>,
       
     },
   ]);

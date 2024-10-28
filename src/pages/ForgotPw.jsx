@@ -1,6 +1,6 @@
 import React from 'react'
 import { ForgotPassword } from '../components/Fragments/ForgotPassword';
-import Authlayout from '../components/Layouts/AuthLayout';
+import Authlayout from "../components/Layouts/AuthLayout";
 
 
 export const ForgotPw = () => {

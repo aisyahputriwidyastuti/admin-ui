@@ -121,7 +121,7 @@ const AuthLayout = (props) => {
       </div>
       {/* container end */}
     </div>
-  );
-};
+  )
+}
 
-export default AuthLayout;
+export default AuthLayout
