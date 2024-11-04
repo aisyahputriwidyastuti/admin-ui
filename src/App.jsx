@@ -5,31 +5,34 @@ import ErrorRoute from "./pages/errorRoute";
 import { ForgotPw } from "./pages/ForgotPw";
 import DashboardPage from "./pages/dashboard";
 import BalancePage from "./pages/balance";
+import ExpensesPage from "./pages/Expenses"; // Import halaman Expenses
 
 const App = () => {
   const myRouter = createBrowserRouter([
     {
       path: "/",
       element: <DashboardPage />,
-      errorElement: <ErrorRoute/>
+      errorElement: <ErrorRoute />,
     },
     {
       path: "/login",
-      element: <SignInPage/>
+      element: <SignInPage />,
     },
     {
       path: "/register",
-      element: <SignUpPage/>
+      element: <SignUpPage />,
     },
     {
       path: "/forgotpassword",
-      element: <ForgotPw/>,
-      
+      element: <ForgotPw />,
     },
     {
       path: "/balance",
-      element: <BalancePage/>,
-      
+      element: <BalancePage />,
+    },
+    {
+      path: "/expenses", // Route untuk halaman Expenses
+      element: <ExpensesPage />,
     },
   ]);
 
