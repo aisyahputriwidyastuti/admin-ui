@@ -1,5 +1,3 @@
-import React from 'react';
-
 const Card = (props) => {
   const { title = false, desc, variant } = props;
 
@@ -7,8 +5,8 @@ const Card = (props) => {
     <div className={`flex flex-col flex-1 mb-6 ${variant}`}>
       {title && (
         <>
-          {title.length === 1 ? (
-            <div className="hidden md:block md:text-lg md:text-gray-o2 md:mb-4">
+          {title.length == 1 ? (
+            <div className="hidden md:block md:text-lg md:text-gray-02 md:mb-4">
               {title}
             </div>
           ) : (

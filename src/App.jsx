@@ -2,10 +2,13 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import SignInPage from "./pages/SignIn";
 import SignUpPage from "./pages/SignUp";
 import ErrorRoute from "./pages/errorRoute";
-import { ForgotPw } from "./pages/ForgotPw";
+import ForgotPasswordPage from "./pages/forgotPassword";
 import DashboardPage from "./pages/dashboard";
 import BalancePage from "./pages/balance";
-import ExpensesPage from "./pages/Expenses"; // Import halaman Expenses
+import GoalPage from "./pages/goal";
+import ExpensePage from "./pages/expense";
+// import { useState } from "react";
+// import "./App.css";
 
 const App = () => {
   const myRouter = createBrowserRouter([
@@ -23,16 +26,20 @@ const App = () => {
       element: <SignUpPage />,
     },
     {
-      path: "/forgotpassword",
-      element: <ForgotPw />,
+      path: "/forgot-password",
+      element: <ForgotPasswordPage />,
     },
     {
       path: "/balance",
       element: <BalancePage />,
     },
     {
-      path: "/expenses", // Route untuk halaman Expenses
-      element: <ExpensesPage />,
+      path: "/goal",
+      element: <GoalPage />,
+    },
+    {
+      path: "/expense",
+      element: <ExpensePage />,
     },
   ]);
 
