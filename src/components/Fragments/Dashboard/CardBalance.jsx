@@ -4,6 +4,7 @@ import Stepper from "../../Elements/Stepper";
 import { Link } from "react-router-dom";
 import { Icon } from "../../Elements/Icon";
 
+
 const CardBalance = () => {
     const balanceCard = accounts.map((account) => (
     <div key={account.id} className="p-2">

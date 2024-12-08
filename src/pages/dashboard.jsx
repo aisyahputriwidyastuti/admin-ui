@@ -4,8 +4,10 @@ import MainLayout from "../components/Layouts/MainLayout";
 import bills from "../data/bills";
 import expensesBreakdowns from "../data/expenses";
 import transactions from "../data/transactions";
-import { Icon } from "../components/Elements/Icon"; 
+import { Icon } from "../components/Elements/Icon";  // Pastikan kamu mengimpor Icon jika diperlukan
 import CardBalance from "../components/Fragments/Dashboard/CardBalance";
+import CardStatistic from "../components/Fragments/Dashboard/CardStatistic";
+import CardGoal from "../components/Fragments/Dashboard/CardGoal";
 
 const DashboardPage = () => {
 
@@ -98,10 +100,7 @@ const DashboardPage = () => {
       {/* top content start*/}
       <div className="md:grid md:grid-cols-3 md:gap-6">
         <CardBalance />
-        <Card 
-            title="Goals"
-            desc="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae earum ex doloribus, tenetur optio iusto exercitationem reprehenderit distinctio minus nam delectus ab ea asperiores fugiat cupiditate? Blanditiis doloremque nam aliquam!" 
-        />
+        <CardGoal/>
         <Card title="Upcoming Bill" desc={billCard} /> 
       </div>
       <div className="md:grid md:grid-cols-3 md:gap-6">
@@ -133,7 +132,7 @@ const DashboardPage = () => {
          />
         </div>
         <div className="md:col-span-2 flex flex-col flex-1">
-          <Card title="Statistics" />
+          <CardStatistic/>
           <Card title="Expenses Breakdown" 
           desc={<div className="lg:grid lg:grid-cols-3">{expenseCard}</div>}/>
         </div>

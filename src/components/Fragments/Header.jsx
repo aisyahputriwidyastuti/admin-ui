@@ -1,5 +1,5 @@
 import Input from "../Elements/LabeledInput/Input";
-//import NotificationsIcon from "@mui/icons-material/Notifications";
+import NotificationsIcon from "@mui/icons-material/Notifications";
 
 const Header = () => {
   const date = new Date().toDateString().slice(4);
@@ -12,7 +12,7 @@ const Header = () => {
       </div>
       <div className="flex">
         <div className="self-center">
-          {/* <NotificationsIcon className="text-gray-01 scale-110" /> */}
+          <NotificationsIcon className="text-gray-01 scale-110" />
         </div>
         <div className="ms-10 hidden sm:block">
           <Input variant="bg-white w-80" />

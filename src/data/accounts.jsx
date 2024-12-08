@@ -24,7 +24,7 @@ export const accounts = [
       accountType: "Saving",
       accountNumber: "133 456 886 80000",
       balance: 25000,
-      logo: "",
+      logo: "Brac.png",
     },
     {
       id: 4,
@@ -33,7 +33,7 @@ export const accounts = [
       accountType: "Investment",
       accountNumber: "698 456 866 20000",
       balance: 25000,
-      logo: "",
+      logo: "AB.png",
     },
     {
       id: 5,
@@ -42,7 +42,7 @@ export const accounts = [
       accountType: "City Bank Ltd",
       accountNumber: "363 456 896 60000",
       balance: 25000,
-      logo: "",
+      logo: "City.png",
     },
   ];
   
