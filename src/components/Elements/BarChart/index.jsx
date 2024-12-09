@@ -1,18 +1,24 @@
-import React from 'react'
+import {useContext} from 'react'
 import { BarChart } from '@mui/x-charts/BarChart';
-import { axisClasses } from '@mui/x-charts/ChartsAxis';
+import { ThemeContext } from '../../../context/themeContext';
 
 const chartSetting = {
     yAxis: [
         {
-            label: 'rainfall (mm)',
+            disableTicks: true,
+            disableLine: true,
+            tickFontSize: 10,
         },
     ],
-    width: 500,
-    height: 300,
+    grid: {
+        horizontal: true,
+    },
     sx: {
-        [`.${axisClasses.left} .${axisClasses.label}`]: {
-            transform: 'translate(-20px, 0)',
+        ["& .MuiChartsAxis-left .MuiChartsAxis-tickLabel"]: {
+            fill: "#9F9F9F",
+        },
+        ["& .MuiChartsAxis-bottom .MuiChartsAxis-tickLabel"]: {
+            fill: "#9F9F9F",
         },
     },
 };
@@ -20,11 +26,21 @@ const chartSetting = {
 export default function BarsDataset(props) {
     const { desc } = props;
 
+    const {theme} = useContext(ThemeContext);
+
+    desc.series[1].color = theme.color;
+
     return (
         <BarChart
             dataset={desc.data}
-            xAxis={[{ scaleType: 'band', dataKey: desc.dataKey }]}
+            xAxis={[{ scaleType: 'band', dataKey: desc.dataKey, categoryGapRatio: 0.5 }]}
             series={desc.series}
+            slotProps={{
+                legend: {
+                    direction: "row",
+                    position: { vertical: "top", horizontal: "right" }
+                }
+            }}
             {...chartSetting}
         />
     );
