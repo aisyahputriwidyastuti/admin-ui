@@ -6,10 +6,11 @@ export default {
   ],
   theme: {
     extend: {
-      colors: {
+      colors : {
+        warnaku : "#88AB8E",
         primary: "var(--color-primary)",
         secondary: "#525256",
-        defaultBlack: "#191919", 
+        defaultBlack: "#191919",  
         gray: {
           "01": "#666666",
           "02": "#878787",

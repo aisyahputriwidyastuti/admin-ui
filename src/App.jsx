@@ -1,52 +1,53 @@
-import { createBrowserRouter, RouterProvider , Navigate} from "react-router-dom";
+import { createBrowserRouter, Navigate, RouterProvider } from "react-router-dom";
 import SignInPage from "./pages/SignIn";
 import SignUpPage from "./pages/SignUp";
 import ErrorRoute from "./pages/errorRoute";
-import ForgotPasswordPage from "./pages/forgotPassword";
+import { ForgotPassPages } from "./pages/ForgotPassPages";
 import DashboardPage from "./pages/dashboard";
 import BalancePage from "./pages/balance";
-import GoalPage from "./pages/goal";
-import ExpensePage from "./pages/expense";
+import ExpensesPage from "./pages/expenses";
+import GoalPage from "./pages/goals";
 import { useContext } from "react";
 import { AuthContext } from "./context/authContext";
 
 const App = () => {
+  const { isLoggedIn } = useContext(AuthContext);
 
-  const { isLoggedIn} = useContext(AuthContext);
-
-  const RequireAuth = ({ children }) => {
-    return isLoggedIn ? children : <Navigate to="/login" />;
+  const RequiredAuth = ({children}) => {
+    return isLoggedIn ? children : <Navigate to="/login" />
   };
+
   const myRouter = createBrowserRouter([
     {
       path: "/",
-      element: <RequireAuth><DashboardPage /></RequireAuth>,
-      errorElement: <ErrorRoute />,
+      element: <RequiredAuth><DashboardPage/> </RequiredAuth>,
+      errorElement: <ErrorRoute/>
     },
     {
       path: "/login",
-      element: <SignInPage />,
+      element: <SignInPage/>,
+      
     },
     {
       path: "/register",
-      element: <SignUpPage />,
+      element: <SignUpPage/>
     },
     {
-      path: "/forgot-password",
-      element: <ForgotPasswordPage />,
+      path: "/forgotpassword",
+      element: <ForgotPassPages/>
     },
     {
       path: "/balance",
-      element: <RequireAuth><BalancePage /></RequireAuth>,
+      element: <RequiredAuth><BalancePage/></RequiredAuth>
     },
     {
-      path: "/goal",
-      element: <RequireAuth><GoalPage /></RequireAuth>,
+      path: "/expenses",
+      element: <RequiredAuth><ExpensesPage/></RequiredAuth>
     },
     {
-      path: "/expense",
-      element: <RequireAuth><ExpensePage />,</RequireAuth>,
-    },
+      path: "/goals",
+      element: <RequiredAuth><GoalPage/></RequiredAuth>
+    }
   ]);
 
   return (

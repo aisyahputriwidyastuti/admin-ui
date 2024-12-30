@@ -1,13 +1,14 @@
-import { Link } from "react-router-dom";
 import accounts from "../../../data/accounts";
 import Card from "../../Elements/Card";
 import Stepper from "../../Elements/Stepper";
-import { Icon } from "../../Elements/Icon";
+import { Link } from "react-router-dom";
+import { Icon } from "../../Elements/Icons";
 import { useContext } from "react";
 import { ThemeContext } from "../../../context/themeContext";
 
 const CardBalance = () => {
-    const {theme } = useContext(ThemeContext);
+
+    const { theme } = useContext(ThemeContext);
 
     const balanceCard = accounts.map((account) => (
     <div key={account.id} className={`p-2 ${theme.name}`}>
@@ -32,7 +33,7 @@ const CardBalance = () => {
                 {account.logo != "" && (
                     <img
                         className="ms-auto"
-                        src={`/images/${account.logo}`}
+                        src={`/Images/${account.logo}`}
                     />
                 )}
 

@@ -1,14 +1,13 @@
-import { useContext } from "react";
-import Input from "../Elements/LabeledInput/Input";
-import NotificationsIcon from "@mui/icons-material/Notifications";
-import { ThemeContext } from "../../context/themeContext";
-import { AuthContext } from "../../context/authContext";
 
+import Input from '../Elements/LabeledInput/Input';
+import NotificationsIcon from '@mui/icons-material/Notifications';
+import { AuthContext } from '../../context/authContext';
+import { useContext } from 'react';
 
-const Header = () => {
-  const { theme } = useContext(ThemeContext);
-  const {name } = useContext(AuthContext);
+export const Header = () => {
+
   const date = new Date().toDateString().slice(4);
+  const { name } = useContext(AuthContext);
 
   return (
     <header className="border-b-2 py-4 px-6 flex items-center justify-between">
@@ -25,7 +24,7 @@ const Header = () => {
         </div>
       </div>
     </header>
-  );
-};
+  )
+}
 
 export default Header;

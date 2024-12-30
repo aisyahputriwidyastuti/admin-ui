@@ -1,14 +1,16 @@
-const Input = ({ name, type, placeholder, register}) => {
-  const variant = "bg-special-mainBg border border-gray-03";
+import React from 'react'
+import Label from './Label'
+import Input from './Input'
+
+
+const LabeledInput = ({ label, name, type, placeholder, register }) => {
 
   return (
-    <input 
-    type={type}
-    className={`${variant} py-3 ps-4 text-sm rounded-md w-full text-gray-01 focus:border-black`}
-    placeholder={placeholder}
-    name={name}
-    id={name}
-    {...register}/>
+    <>
+      <Label htmlFor={name}>{label}</Label>
+      <Input name={name} type={type} placeholder={placeholder} register={register} />
+    </>
   );
 };
-export default Input;
+
+export default LabeledInput;

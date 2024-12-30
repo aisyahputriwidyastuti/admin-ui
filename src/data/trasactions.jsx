@@ -1,4 +1,4 @@
-import { Icon } from "../components/Elements/Icon";
+import { Icon } from "../components/Elements/Icons";
 
 const transactions = [
     {

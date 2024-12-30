@@ -1,18 +1,21 @@
-import { useContext , useState} from 'react';
+import { useContext, useState } from 'react';
 import { useTheme } from '@mui/material/styles';
+
 import MobileStepper from '@mui/material/MobileStepper';
 import Button from '@mui/material/Button';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import { ThemeContext } from '../../../context/themeContext';
 
+
 const Stepper = (props) => {
     const { desc } = props;
 
     const theme = useTheme();
-    const [activeStep, setActiveStep] = useState(0);
 
-    const {theme: themeMode} = useContext(ThemeContext);
+    const {theme : themeMode } = useContext(ThemeContext);
+
+    const [activeStep, setActiveStep] = useState(0);
 
     const handleNext = () => {
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -22,27 +25,28 @@ const Stepper = (props) => {
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
     };
 
-    const dataNum = desc.length; 
+    const dataNum = desc.length;
 
     return (
-    <>
-    <div>{desc[activeStep]}</div>
+        <>
+        <div>{desc[activeStep]}</div>
         <MobileStepper
             variant="dots"
             steps={dataNum}
             position="static"
             activeStep={activeStep}
-            sx={{
-                maxWidth: "100%", 
+            sx={{ 
+                maxWidth: "100%",
                 flexGrow: 1,
-            "& .MuiMobileStepper-dot" :{
-                backgroundColor: "darkgray" ,
+            "& .MuiMobileStepper-dot" : {
+                backgroundColor: "darkgray"
             },
             "& .MuiMobileStepper-dotActive" : {
-                backgroundColor: themeMode.color}
-             }}
+                backgroundColor: themeMode.color
+            },
+            }}
             nextButton={
-                <Button size="small" onClick={handleNext} sx={{color: "black" , fontWeight: "bold"}} disabled={activeStep === dataNum - 1}>
+                <Button size="small" onClick={handleNext} sx={{color: "black", fontWeight: "bold"}} disabled={activeStep === dataNum - 1}>
                     Next
                     {theme.direction === 'rtl' ? (
                         <KeyboardArrowLeft />
@@ -52,7 +56,7 @@ const Stepper = (props) => {
                 </Button>
             }
             backButton={
-                <Button size="small" onClick={handleBack} sx={{color: "black" , fontWeight: "bold"}} disabled={activeStep === 0}>
+                <Button size="small" onClick={handleBack}  sx={{color: "black", fontWeight: "bold"}} disabled={activeStep === 0}>
                     {theme.direction === 'rtl' ? (
                         <KeyboardArrowRight />
                     ) : (

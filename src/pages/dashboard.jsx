@@ -1,10 +1,10 @@
-import { useState } from "react";
 import Card from "../components/Elements/Card";
 import MainLayout from "../components/Layouts/MainLayout";
 import bills from "../data/bills";
 import expensesBreakdowns from "../data/expenses";
-import transactions from "../data/transactions";
-import { Icon } from "../components/Elements/Icon";  // Pastikan kamu mengimpor Icon jika diperlukan
+import transactions from "../data/trasactions";
+import { Icon } from "../components/Elements/Icons";
+import { useState } from "react";
 import CardBalance from "../components/Fragments/Dashboard/CardBalance";
 import CardStatistic from "../components/Fragments/Dashboard/CardStatistic";
 import CardGoal from "../components/Fragments/Dashboard/CardGoal";
@@ -35,7 +35,7 @@ const DashboardPage = () => {
           <span className="text-2xl font-bold">{bill.date}</span>
         </div>
         <div className="">
-        <img className="h-6" src={`/images/${bill.logo}`} />
+          <img className="h-6" src={`/Images/${bill.logo}`} />
           <span className="font-bold">{bill.name}</span>
           <br />
           <span className="text-xs">Last Charge - {bill.lastCharge}</span>
@@ -99,7 +99,7 @@ const DashboardPage = () => {
     <MainLayout type="dashboard">
       {/* top content start*/}
       <div className="md:grid md:grid-cols-3 md:gap-6">
-        <CardBalance />
+        <CardBalance/>
         <CardGoal/>
         <Card title="Upcoming Bill" desc={billCard} /> 
       </div>
@@ -130,9 +130,10 @@ const DashboardPage = () => {
               </div>
             }
          />
+         
         </div>
         <div className="md:col-span-2 flex flex-col flex-1">
-          <CardStatistic/>
+        <CardStatistic/>
           <Card title="Expenses Breakdown" 
           desc={<div className="lg:grid lg:grid-cols-3">{expenseCard}</div>}/>
         </div>
