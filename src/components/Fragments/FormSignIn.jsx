@@ -4,16 +4,15 @@ import LabeledInput from "../Elements/LabeledInput";
 import { useForm } from "react-hook-form";
 import axios from "axios"; // Import axios
 import { useState , useContext } from "react";
-import CustomizedSnackbars from "../Elements/SnackBar";
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/authContext";
+import { NotifContext } from "../../context/notifContext";
 
 const FormSignIn = () => {
-  const [msg, setMsg] = useState("");
-  const [open, setOpen] = useState(true);
+  const { setMsg, setOpen } = useContext(NotifContext); // Ambil setMsg dan setOpen dari NotifContext
   const { setIsLoggedIn, setName } = useContext(AuthContext);
-  const navigate = useNavigate ();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -24,6 +23,7 @@ const FormSignIn = () => {
   });
 
   const onFormSubmit = async (data) => {
+    setIsLoggedIn(true);
     try {
       const response = await axios.post(
         "https://jwt-auth-eight-neon.vercel.app/login",
@@ -32,24 +32,28 @@ const FormSignIn = () => {
           password: data.password,
         }
       );
+
+      setIsLoggedIn(false);
+      setOpen(true);
+      setMsg({ severity: "success", desc: "Login Success" }); // Perbaiki kesalahan penulisan "syccess" menjadi "success"
       
-      const decoded = jwtDecode (response.data.refreshToken);
+      const decoded = jwtDecode(response.data.refreshToken);
       console.log(decoded);
 
-      // console.log(response); // Log response jika berhasil
-      setOpen(true);
-      setMsg({ severity: "success", desc: "Login Success" });
-
+      // Simpan refreshToken di localStorage
       localStorage.setItem("refreshToken", response.data.refreshToken);
 
       setIsLoggedIn(true);
       setName(decoded.name);
-      navigate("/");
+      navigate("/"); // Arahkan ke halaman utama setelah login
       
     } catch (error) {
+      // Jika terjadi error, set loading ke false jika menggunakan setIsLoading
+      // setIsLoading(false); // Uncomment jika Anda menambahkan setIsLoading
+
       if (error.response) {
         setOpen(true);
-        setMsg({ severity: "error", desc: error.response.data.msg }); // Log error response jika ada
+        setMsg({ severity: "error", desc: error.response.data.msg });
       }
     }
   };
@@ -92,21 +96,19 @@ const FormSignIn = () => {
         <CheckBox label="Keep me signed in" name="status" />
       </div>
       <Button
-        variant={
-          !isValid
-            ? "bg-gray-05 w-full text-white"
-            : "bg-primary w-full text-white"
-        }
+        variant={`!isValid
+            ? "bg-gray-05" : "bg-primary zoom-in"}
+            w-full text-white`}
         type="submit"
         disabled={!isValid ? "disabled" : ""}
       >
         Login
       </Button>
-      {msg && (
+      {setMsg && (
         <CustomizedSnackbars
-          severity={msg.severity}
-          message={msg.desc}
-          open={open}
+          severity={setMsg.severity}
+          message={setMsg.desc}
+          open={setOpen}
           setOpen={setOpen}
         />
       )}
