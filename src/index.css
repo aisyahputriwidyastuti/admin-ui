@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
 
@@ -9,26 +8,74 @@
 @layer base {
     :root {
         /* default primary color*/
-      --color-primary: #299D91;
+        --color-primary: #299D91;
+        
+        /* light mode colors */
+        --color-background: #FFFFFF;
+        --color-text: #1A1A1A;
+        --color-card: #F8F9FA;
+        --color-border: #E9ECEF;
+        --color-input: #FFFFFF;
     }
-  }
-  
-  .theme-blue {
-    --color-primary: #1E90FF;
-  }
-  
-  .theme-purple {
-    --color-primary: #6A5ACD;
-  }
-  
-  .theme-pink {
-    --color-primary: #DB7093;
-  }
-  
-  .theme-brown {
-    --color-primary: #8B4513;
-  }
 
-  .zoom-in {
+    :root[class~="dark"] {
+        /* dark mode colors */
+        --color-background: #1A1A1A;
+        --color-text: #FFFFFF;
+        --color-card: #2D2D2D;
+        --color-border: #404040;
+        --color-input: #2D2D2D;
+    }
+}
+
+/* Theme Colors */
+.theme-blue {
+    --color-primary: #1E90FF;
+}
+
+.theme-purple {
+    --color-primary: #6A5ACD;
+}
+
+.theme-pink {
+    --color-primary: #DB7093;
+}
+
+.theme-brown {
+    --color-primary: #8B4513;
+}
+
+/* Dark Mode Styles */
+.dark body {
+    @apply bg-[var(--color-background)] text-[var(--color-text)];
+}
+
+.dark input,
+.dark textarea,
+.dark select {
+    @apply bg-[var(--color-input)] border-[var(--color-border)];
+}
+
+.dark .card {
+    @apply bg-[var(--color-card)] border-[var(--color-border)];
+}
+
+/* Animation */
+.zoom-in {
     @apply duration-500 hover:translate-y-1 hover:scale-110;
-  }
+}
+
+/* Additional Utility Classes */
+@layer components {
+    .card {
+        @apply bg-[var(--color-card)] border border-[var(--color-border)] rounded-lg shadow-sm;
+    }
+
+    .input-field {
+        @apply bg-[var(--color-input)] border border-[var(--color-border)] rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)];
+    }
+
+    .btn-primary {
+        @apply bg-[var(--color-primary)] text-white px-4 py-2 rounded-md hover:opacity-90 transition-opacity;
+    }
+}
