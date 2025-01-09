@@ -16,12 +16,12 @@ export const ThemeContextProvider = ({ children }) => {
     setDarkMode(!darkMode);
   };
 
-  // Update theme based on dark mode
+  // Update darkmode 
   useEffect(() => {
     if (darkMode) {
       setTheme({
         name: "theme-dark",
-        color: "#299D91", // Tetap menggunakan warna aksen yang sama
+        color: "#299D91", 
         background: "#1A1A1A",
         text: "#FFFFFF"
       });
@@ -37,7 +37,6 @@ export const ThemeContextProvider = ({ children }) => {
     }
   }, [darkMode]);
 
-  // Nilai yang akan dishare ke seluruh komponen
   const value = {
     theme,
     setTheme,
