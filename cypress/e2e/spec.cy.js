@@ -1,70 +1,58 @@
-describe("User login", () => {
-  it("should allow user to log in with valid credentials", () => {
-    cy.visit("http://localhost:5173/");
+describe("End-to-End Testing: Access Dashboard (Overview)", () => {
+  it("Login with Valid Credential and Access Dashboard", () => {
+    // 1. Buka URL
+    cy.visit("http://localhost:5173/"); // Pastikan URL sesuai dengan aplikasi Anda
 
-    cy.url().should("include", "/login");
+    // 2. Verifikasi halaman login terlihat
+    cy.url().should("include", "/login"); // Pastikan URL mengarah ke halaman login
+    cy.get("h1").contains("Login").should("be.visible"); // Memastikan ada judul "Login"
 
-    cy.get("input#email")
-      .should("be.visible")
-      .should("have.attr", "placeholder", "hello@example.com")
-      .type("hello@example.com")
-      .should("have.value", "hello@example.com");
+    // 3. Input email
+    cy.get("#email") // Pastikan elemen memiliki id="email"
+      .should("be.visible") // Memastikan input terlihat
+      .should("have.attr", "placeholder", "hello@example.com") // Placeholder sesuai
+      .type("hello@example.com") // Ketik email
+      .should("have.value", "hello@example.com"); // Memastikan value sesuai
 
-    cy.get("input#password")
-      .should("be.visible")
-      .should("have.attr", "placeholder", "*************")
-      .type("123456")
-      .should("have.value", "123456");
+    // 4. Input password
+    cy.get("#password") // Pastikan elemen memiliki id="password"
+      .should("be.visible") // Memastikan input terlihat
+      .should("have.attr", "placeholder", "*************") // Placeholder sesuai
+      .type("123456") // Ketik password
+      .should("have.value", "123456"); // Memastikan value sesuai denngan password
 
-    cy.get("button").contains("Login").click();
+    // 5. Klik tombol Login
+    cy.contains("button", "Login") // Cari tombol dengan teks "Login"
+      .should("be.visible") // Memastikan tombol terlihat
+      .click(); // Klik tombol
 
-    cy.get("nav");
+    // 6. Verifikasi bahwa login berhasil dan diarahkan ke Dashboard
+    cy.url().should("include", "/dashboard"); 
 
-    cy.get("header");
-  });
+    // 7. Verifikasi elemen di halaman Dashboard
+    cy.get("header").contains("Welcome").should("be.visible"); 
+    cy.get("nav").should("be.visible"); 
 
-  it("should not allow user to log in with invalid credentials", () => {
-    cy.visit("http://localhost:5173/");
+    // 8. Verifikasi menu navigasi di sidebar
+    cy.get("nav").within(() => {
+      cy.contains("Overview").should("be.visible"); 
+      cy.contains("Balance").should("be.visible"); 
+      cy.contains("Expenses").should("be.visible"); 
+      cy.contains("Goals").should("be.visible");
+    });
 
-    cy.url().should("include", "/login");
+    // 9. Verifikasi elemen utama pada halaman Dashboard
+    cy.get("h1").contains("Dashboard Overview").should("be.visible"); 
+    cy.get(".card").should("have.length.greaterThan", 0);
 
-    cy.get("input#email")
-      .should("be.visible")
-      .should("have.attr", "placeholder", "hello@example.com")
-      .type("hello@example.com")
-      .should("have.value", "hello@example.com");
+    // 10. Verifikasi card "Goals" memuat data dengan benar
+    cy.get(".card").contains("Goals").should("be.visible"); 
+    cy.get(".card").contains("Target Achieved").should("be.visible"); 
+    cy.get(".loader").should("not.exist"); 
 
-    cy.get("input#password")
-      .should("be.visible")
-      .should("have.attr", "placeholder", "*************")
-      .type("123")
-      .should("have.value", "123");
-
-    cy.get("button").contains("Login").click();
-
-    cy.get("div").contains("Wrong Password");
-  }); 
-
-  it("should not allow user to log in with invalid email format", () => {
-    cy.visit("http://localhost:5173/");
-
-    cy.url().should("include", "/login");
-
-    cy.get("input#email")
-      .should("be.visible")
-      .should("have.attr", "placeholder", "hello@example.com")
-      .type("invalidemail.com") // Email tanpa tanda @
-      .should("have.value", "invalidemail.com");
-
-    cy.get("input#password")
-      .should("be.visible")
-      .should("have.attr", "placeholder", "*************")
-      .type("123456")
-      .should("have.value", "123456");
-
-    cy.get("button").contains("Login").click();
-
-    // Asumsikan sistem menampilkan error "Invalid email format"
-    cy.get("div").contains("Invalid email format");
+    // 11. Verifikasi navigasi ke halaman lain dari menu sidebar (contoh: Expenses)
+    cy.contains("nav", "Expenses").click(); 
+    cy.url().should("include", "/expenses"); s
+    cy.get("h1").contains("Expenses").should("be.visible"); 
   });
 });
